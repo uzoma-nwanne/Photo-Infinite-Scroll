@@ -40,12 +40,23 @@ async function getPhotos() {
   try {
     const response = await fetch(apiURL);
     photosArray = await response.json();
-  } catch {
+  } catch (error) {
     console.log(error);
   } finally {
-    console.log(photosArray);
     displayPhotos();
+    loader.hidden = true;
   }
 }
 
-getPhotos();
+// Check to see if scrolling near bottom of page, Load More Photos
+window.addEventListener("scroll", () => {
+  if (
+    window.innerHeight + window.scrollY >=
+    document.body.offsetHeight - 1000
+  ) {
+    getPhotos();
+    console.log("load more");
+  }
+});
+
+setTimeout(getPhotos(), 1000); //set first loading in set Timeout so that there is time to display loader
