@@ -40,10 +40,10 @@ async function getPhotos() {
   try {
     const response = await fetch(apiURL);
     photosArray = await response.json();
+    displayPhotos();
   } catch (error) {
     console.log(error);
   } finally {
-    displayPhotos();
     loader.hidden = true;
   }
 }
