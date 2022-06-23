@@ -59,4 +59,6 @@ window.addEventListener("scroll", () => {
   }
 });
 
-setTimeout(getPhotos(), 1000); //set first loading in set Timeout so that there is time to display loader
+setTimeout(function () {
+  getPhotos();
+}, 3000); //set first loading in set Timeout so that there is time to display loader
